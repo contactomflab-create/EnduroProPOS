@@ -36,7 +36,7 @@ export default function Page() {
       showToast('Actualizado correctamente', 'success')
     } else {
       const { error } = await supabase.from('tipos_producto').insert({ nombre: form.nombre, descripcion: form.descripcion || null })
-      if (error) return showToast('Ya existe ese nombre', 'error')
+      if (error) return showToast(error.message || 'Error al guardar', 'error')
       showToast('Tipo creada', 'success')
     }
     setShowModal(false)
